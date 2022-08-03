@@ -1,0 +1,25 @@
+{
+  "name": "@tiny-mile/delivery-sdk",
+  "version": "0.0.1",
+  "description": "NodeJS SDK to interact with Tiny Mile delivery API",
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
+  "repository": "https://github.com/tinymile/delivery-sdk-node",
+  "author": "Tiny Mile",
+  "license": "Apache-2.0",
+  "scripts": {
+    "generate": "npx openapi -i https://external-api.dev.gcp.tinymile.ai/doc/spec-bundle.json -o src --name Client",
+    "tsc": "npx tsc -p tsconfig.json",
+    "lint": "npx eslint --max-warnings=0 ./src/**/*.ts",
+    "prepublish": "yarn generate && yarn tsc"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint": "^8.21.0",
+    "openapi-typescript-codegen": "^0.23.0",
+    "typescript": "^4.7.4"
+  }
+}
