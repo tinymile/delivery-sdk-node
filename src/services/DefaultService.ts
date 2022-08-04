@@ -17,85 +17,6 @@ export class DefaultService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
-     * Configure webhooks
-     * @param requestBody
-     * @returns Webhooks webhooks set successfully
-     * @throws ApiError
-     */
-    public setWebhooks(
-        requestBody?: Webhooks,
-    ): CancelablePromise<Webhooks> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/api/v1/webhooks',
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                400: `Can't set webhooks`,
-            },
-        });
-    }
-
-    /**
-     * Request a quote for an order
-     * @param requestBody
-     * @returns DeliveryOrderQuote Quote was created
-     * @throws ApiError
-     */
-    public requestQuote(
-        requestBody?: DeliveryOrderQuoteRequest,
-    ): CancelablePromise<DeliveryOrderQuote> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/api/v1/quotes',
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                400: `Quote was rejected`,
-            },
-        });
-    }
-
-    /**
-     * Create an order
-     * @param requestBody
-     * @returns DeliveryOrder Order was created
-     * @throws ApiError
-     */
-    public createOrder(
-        requestBody?: DeliveryOrderCreationRequest,
-    ): CancelablePromise<DeliveryOrder> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/api/v1/orders',
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                400: `Order was rejected`,
-                409: `An order with the same ID already exists`,
-            },
-        });
-    }
-
-    /**
-     * Fetch delivery jobs of order
-     * @param orderUuid
-     * @returns DeliveryJob Delivery jobs associated with order
-     * @throws ApiError
-     */
-    public getJobsForOrder(
-        orderUuid: string,
-    ): CancelablePromise<Array<DeliveryJob>> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/api/v1/orders/{order_uuid}/delivery-jobs',
-            path: {
-                'order_uuid': orderUuid,
-            },
-        });
-    }
-
-    /**
      * Create command to open robot's lid
      * @param deliveryJobUuid
      * @param requestBody
@@ -199,6 +120,121 @@ export class DefaultService {
             url: '/api/v1/delivery-jobs/{delivery_job_uuid}',
             path: {
                 'delivery_job_uuid': deliveryJobUuid,
+            },
+        });
+    }
+
+    /**
+     * Fetch delivery jobs of order
+     * @param orderUuid
+     * @returns DeliveryJob Delivery jobs associated with order
+     * @throws ApiError
+     */
+    public getJobsForOrder(
+        orderUuid: string,
+    ): CancelablePromise<Array<DeliveryJob>> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/api/v1/orders/{order_uuid}/delivery-jobs',
+            path: {
+                'order_uuid': orderUuid,
+            },
+        });
+    }
+
+    /**
+     * Fetch a delivery order by its UUID
+     * @param orderUuid
+     * @returns DeliveryOrder Order information
+     * @throws ApiError
+     */
+    public getOrder(
+        orderUuid: string,
+    ): CancelablePromise<DeliveryOrder> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/api/v1/orders/{order_uuid}',
+            path: {
+                'order_uuid': orderUuid,
+            },
+        });
+    }
+
+    /**
+     * Create an order
+     * @param requestBody
+     * @returns DeliveryOrder Order was created
+     * @throws ApiError
+     */
+    public createOrder(
+        requestBody?: DeliveryOrderCreationRequest,
+    ): CancelablePromise<DeliveryOrder> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/v1/orders',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Order was rejected`,
+                409: `An order with the same ID already exists`,
+            },
+        });
+    }
+
+    /**
+     * Fetch a delivery order using ID provided by client upon order creation
+     * @param externalId
+     * @returns DeliveryOrder Delivery Order information
+     * @throws ApiError
+     */
+    public getOrderByExternalId(
+        externalId: string,
+    ): CancelablePromise<DeliveryOrder> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/api/v1/external-ids/{external_id}/order',
+            path: {
+                'external_id': externalId,
+            },
+        });
+    }
+
+    /**
+     * Request a quote for an order
+     * @param requestBody
+     * @returns DeliveryOrderQuote Quote was created
+     * @throws ApiError
+     */
+    public requestQuote(
+        requestBody?: DeliveryOrderQuoteRequest,
+    ): CancelablePromise<DeliveryOrderQuote> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/v1/quotes',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Quote was rejected`,
+            },
+        });
+    }
+
+    /**
+     * Configure webhooks
+     * @param requestBody
+     * @returns Webhooks webhooks set successfully
+     * @throws ApiError
+     */
+    public setWebhooks(
+        requestBody?: Webhooks,
+    ): CancelablePromise<Webhooks> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/v1/webhooks',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Can't set webhooks`,
             },
         });
     }
