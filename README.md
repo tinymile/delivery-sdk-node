@@ -9,4 +9,12 @@ For the development version, see https://external-api.dev.gcp.tinymile.ai/doc . 
 # Basic usage
 
 ```javascript
+import { Client } from "@tiny-mile/delivery-sdk"
+
+const client = new Client({
+    BASE: "https://external-api.dev.gcp.tinymile.ai",
+    TOKEN: "your-api-key",
+});
+
+client.default.getJobsForOrder(...);
 ```
