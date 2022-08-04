@@ -3,7 +3,7 @@
 /* eslint-disable */
 import type { BaseHttpRequest } from './core/BaseHttpRequest';
 import type { OpenAPIConfig } from './core/OpenAPI';
-import { FetchHttpRequest } from './core/FetchHttpRequest';
+import { AxiosHttpRequest } from './core/AxiosHttpRequest';
 
 import { DefaultService } from './services/DefaultService';
 
@@ -15,7 +15,7 @@ export class Client {
 
     public readonly request: BaseHttpRequest;
 
-    constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = FetchHttpRequest) {
+    constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = AxiosHttpRequest) {
         this.request = new HttpRequest({
             BASE: config?.BASE ?? 'https://api.prod.gcp.tinymile.ai',
             VERSION: config?.VERSION ?? '1.0.0',
