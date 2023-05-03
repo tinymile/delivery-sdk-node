@@ -1,6 +1,6 @@
 {
   "name": "@tiny-mile/delivery-sdk",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "NodeJS SDK to interact with Tiny Mile delivery API",
   "main": "lib/index.js",
   "files": [
