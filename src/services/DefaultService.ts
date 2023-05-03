@@ -107,6 +107,30 @@ export class DefaultService {
     }
 
     /**
+     * Cancel an existing delivery job
+     * @param deliveryJobUuid
+     * @param requestBody
+     * @returns any Cancellation request received.
+     * @throws ApiError
+     */
+    public postJobCancelled(
+        deliveryJobUuid: string,
+        requestBody?: any,
+    ): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/v1/delivery-jobs/{delivery_job_uuid}/commands/cancel',
+            path: {
+                'delivery_job_uuid': deliveryJobUuid,
+            },
+            body: requestBody,
+            errors: {
+                400: `Cancellation request was rejected.`,
+            },
+        });
+    }
+
+    /**
      * Fetch delivery job
      * @param deliveryJobUuid
      * @returns DeliveryJob Delivery job
@@ -177,6 +201,7 @@ export class DefaultService {
             errors: {
                 400: `Order was rejected`,
                 409: `An order with the same ID already exists`,
+                429: `Too many requests`,
             },
         });
     }
@@ -215,6 +240,7 @@ export class DefaultService {
             mediaType: 'application/json',
             errors: {
                 400: `Quote was rejected`,
+                429: `Too many requests`,
             },
         });
     }

@@ -9,6 +9,7 @@ export declare type DeliveryOrderCreationRequest = {
     pickUpNotifyParty?: DeliveryServiceNotifyParty;
     pickUpDeadlineAt?: string;
     pickUpNotes?: string;
+    pickUpAfter?: string;
     dropOffAddress: CompleteAddress;
     dropOffNotifyParty?: DeliveryServiceNotifyParty;
     dropOffDeadlineAt?: string;

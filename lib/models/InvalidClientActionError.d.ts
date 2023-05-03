@@ -5,6 +5,7 @@ export declare type InvalidClientActionError = {
 export declare namespace InvalidClientActionError {
     enum reason {
         DEACTIVATED_CLIENT = "deactivated-client",
-        INVALID_ARGUMENT = "invalid-argument"
+        INVALID_ARGUMENT = "invalid-argument",
+        SELF_SERVICE_UNAVAILABLE = "self-service-unavailable"
     }
 }

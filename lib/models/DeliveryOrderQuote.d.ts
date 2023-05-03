@@ -1,5 +1,6 @@
 import type { CompleteAddress } from './CompleteAddress';
 import type { DeliveryCharges } from './DeliveryCharges';
+import type { TimeWindow } from './TimeWindow';
 export declare type DeliveryOrderQuote = {
     uuid: string;
     receivedAt: string;
@@ -12,4 +13,6 @@ export declare type DeliveryOrderQuote = {
     dropOffDeadlineAt: string;
     deliveryCharges: DeliveryCharges;
     isMock: boolean;
+    estimatedPickUpWindow: TimeWindow;
+    estimatedDropOffWindow: TimeWindow;
 };

@@ -31,6 +31,7 @@ export type { GeocodeLogEntry } from './models/GeocodeLogEntry';
 export { InvalidClientActionError } from './models/InvalidClientActionError';
 export type { RequestQuoteClientErrorResponse } from './models/RequestQuoteClientErrorResponse';
 export { SetWebhookError } from './models/SetWebhookError';
+export type { TimeWindow } from './models/TimeWindow';
 export type { Webhook } from './models/Webhook';
 export type { Webhooks } from './models/Webhooks';
 

@@ -42,6 +42,14 @@ export declare class DefaultService {
      */
     postOrderDroppedOff(deliveryJobUuid: string, requestBody?: any): CancelablePromise<any>;
     /**
+     * Cancel an existing delivery job
+     * @param deliveryJobUuid
+     * @param requestBody
+     * @returns any Cancellation request received.
+     * @throws ApiError
+     */
+    postJobCancelled(deliveryJobUuid: string, requestBody?: any): CancelablePromise<any>;
+    /**
      * Fetch delivery job
      * @param deliveryJobUuid
      * @returns DeliveryJob Delivery job
